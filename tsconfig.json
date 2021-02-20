@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    // 타입스크립트에서 데코레이터를 사용하기위한 옵션
+    "experimentalDecorators": true,
+    "sourceMap": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}
