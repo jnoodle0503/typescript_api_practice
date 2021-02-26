@@ -1,16 +1,16 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { userController } from "../controllers/user";
 
 const userRouter = express.Router();
 
-const { allUserSearch, insertUser } = userController;
+const { allUserSearch, createUser, updateUser, deleteUser } = userController;
 
 userRouter.get("/", allUserSearch);
 
-userRouter.get("/:id", (req: Request, res: Response) => {
-  res.status(200).send();
-});
+userRouter.post("/", createUser);
 
-userRouter.post("/", insertUser);
+userRouter.put("/:id", updateUser);
+
+userRouter.delete("/:id", deleteUser);
 
 export default userRouter;

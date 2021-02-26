@@ -6,11 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_1 = require("../controllers/user");
 const userRouter = express_1.default.Router();
-const { allUserSearch, insertUser } = user_1.userController;
+const { allUserSearch, createUser, updateUser, deleteUser } = user_1.userController;
 userRouter.get("/", allUserSearch);
-userRouter.get("/:id", (req, res) => {
-    res.status(200).send();
-});
-userRouter.post("/", insertUser);
+userRouter.post("/", createUser);
+userRouter.put("/:id", updateUser);
+userRouter.delete("/:id", deleteUser);
 exports.default = userRouter;
 //# sourceMappingURL=user.js.map

@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 import allUserSearch from "./allUserSearch";
-import insertUser from "./insertUser";
+import createUser from "./createUser";
+import updateUser from "./updateUser";
+import deleteUser from "./deleteUser";
 
 export const userController = {
   allUserSearch,
-  insertUser,
+  createUser,
+  updateUser,
+  deleteUser,
 };

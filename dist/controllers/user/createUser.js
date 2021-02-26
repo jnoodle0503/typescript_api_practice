@@ -11,15 +11,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const User_1 = require("../../entity/User");
-const allUserSearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const users = yield typeorm_1.getRepository(User_1.User).find();
-        res.status(200).send({ users });
-    }
-    catch (e) {
-        res.status(400).json({ message: e.message });
-        throw new Error(e);
-    }
-});
-exports.default = allUserSearch;
-//# sourceMappingURL=allUserSearch.js.map
+const insertUser = (req, res) => {
+    const { name, location } = req.body;
+    // Repository's API's 첫번 째 방법
+    // const user: User = new User();
+    // console.log(req.body);
+    // user.name = req.body.name;
+    // user.location = req.body.location;
+    // try {
+    //   user.save();
+    //   res.status(201).send("new User!");
+    // } catch (e) {
+    //   throw new Error(e);
+    // }
+    // Repository's API's 두번 째 방법
+    typeorm_1.getRepository(User_1.User)
+        .create({ name, location })
+        .save()
+        .then(() => __awaiter(void 0, void 0, void 0, function* () {
+        const createdUserList = yield typeorm_1.getRepository(User_1.User).find();
+        res.status(200).send(createdUserList);
+    }));
+};
+exports.default = insertUser;
+//# sourceMappingURL=createUser.js.map

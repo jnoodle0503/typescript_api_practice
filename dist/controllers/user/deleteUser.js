@@ -11,15 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const User_1 = require("../../entity/User");
-const allUserSearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const users = yield typeorm_1.getRepository(User_1.User).find();
-        res.status(200).send({ users });
-    }
-    catch (e) {
-        res.status(400).json({ message: e.message });
-        throw new Error(e);
-    }
-});
-exports.default = allUserSearch;
-//# sourceMappingURL=allUserSearch.js.map
+const deleteUser = (req, res) => {
+    const { id } = req.params;
+    typeorm_1.getRepository(User_1.User)
+        .delete({ id: Number(id) })
+        .then(() => __awaiter(void 0, void 0, void 0, function* () {
+        const deletedUserList = yield typeorm_1.getRepository(User_1.User).find();
+        res.status(200).send(deletedUserList);
+    }));
+};
+exports.default = deleteUser;
+//# sourceMappingURL=deleteUser.js.map
